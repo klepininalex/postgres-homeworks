@@ -28,8 +28,8 @@ try:
                     cursor.execute('INSERT INTO orders VALUES (%s, %s, %s, %s, %s)',
                                    (row[0], row[1], row[2], row[3], row[4]))
 
-except Exception as ex:
-    print(f'[INFO] Ошибка - {ex}')
+except (Exception, psycopg2.DatabaseError) as error:
+    print(f'[INFO] Ошибка - {error}')
 
 finally:
     if connection:
